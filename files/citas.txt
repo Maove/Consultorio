@@ -1,0 +1,6 @@
+2;3;2021;Mauricio Vasquez Esquivel;1144057297;8
+1;6;2021;Mauricio Vasquez Esquivel;1144057297;9
+12;11;2021;Mauricio Vasquez Esquivel;1144057297;10
+1;6;2021;Andrea Stephania Ramirez Lopez;1107930261;13
+4;6;2021;Andrea Stephania Ramirez Lopez;1107930261;17
+4;6;2021;Helena Cardenas Ramirez;1107930261;14
