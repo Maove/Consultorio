@@ -45,13 +45,13 @@ public class Consultorio
 
     /**
      *
-     * @return
+     * @return ArrayList<Cita> - Listado de citas del consultorio
      */
     public ArrayList<Cita> darCitas() { return citas; }
 
     /**
-     *
-     * @param odon
+     * Método para asignar un arreglo de odontólogos del consultorio
+     * @param odon Arreglo a asignar
      */
     public void cambiarOdontologos(Odontologo[] odon) { odontologos = odon; }
 
@@ -63,7 +63,7 @@ public class Consultorio
 
     /**
      *
-     * @param cit
+     * @param cit - Cita a asignar
      */
     public void cambiarCitas(ArrayList<Cita> cit) { citas = cit; }
 
