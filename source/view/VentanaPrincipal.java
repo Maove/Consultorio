@@ -19,6 +19,8 @@ public class VentanaPrincipal extends JFrame
 
     private VentanaAgregarCita ventanaAgregarCita;
 
+    private PanelTabs panelTabs;
+
     public VentanaPrincipal()
     {
         setTitle("Andrea Ramírez Odontología");
@@ -36,7 +38,10 @@ public class VentanaPrincipal extends JFrame
         //add(panelListaPacientes, BorderLayout.EAST);
 
         panelListaCitas = new PanelListaCitas();
-        add(panelListaCitas, BorderLayout.EAST);
+        //add(panelListaCitas, BorderLayout.EAST);
+
+        panelTabs = new PanelTabs();
+        add(panelTabs, BorderLayout.EAST);
 
         panelOpciones = new PanelOpciones();
         add(panelOpciones, BorderLayout.SOUTH);

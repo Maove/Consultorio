@@ -4,5 +4,5 @@
 1;6;2021;Andrea Stephania Ramirez Lopez;1107930261;13
 4;6;2021;Andrea Stephania Ramirez Lopez;1107930261;17
 4;6;2021;Helena Cardenas Ramirez;1107930261;14
-8;6;2021;Helena Cardenas Ramirez;1107930261;14
-8;6;2021;Mariana Esquivel Estrada;6538329;16
+9;6;2021;Helena Cardenas Ramirez;1107930261;14
+9;6;2021;Mariana Esquivel Estrada;6538329;16

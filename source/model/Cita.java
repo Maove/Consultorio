@@ -1,7 +1,5 @@
 package model;
 
-import java.sql.Time;
-
 public class Cita
 {
     /**
@@ -9,6 +7,9 @@ public class Cita
      */
     private int day, month, year, hora;
 
+    /**
+     *
+     */
     private Paciente pacienteAsignado;
 
     /**
