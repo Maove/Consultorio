@@ -46,6 +46,12 @@ public class Main
         inicializarCalendario();
 
         inicializarModelo();
+
+        int day = ventanaPrincipal.darPanelCalendario().darCalendario().getDayChooser().getDay();
+        int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
+        int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
+
+        JOptionPane.showMessageDialog(null, "Para hoy se tienen: " + modelo.buscarCitasPorFecha(day, month, year).size() + " citas programadas","Citas de hoy", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
