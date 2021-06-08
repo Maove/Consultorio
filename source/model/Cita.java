@@ -12,11 +12,12 @@ public class Cita
     private Paciente pacienteAsignado;
 
     /**
-     *
-     * @param d
-     * @param m
-     * @param y
-     * @param pac
+     * Constructor de la clase Cita
+     * @param d - Día de la cita
+     * @param m - Mes de la cita
+     * @param y - Año de la cita
+     * @param pac - Paciente asignado para la nueva cita
+     * @param h - Hora de la cita
      */
     public Cita(int d, int m, int y, Paciente pac, int h)
     {
@@ -32,8 +33,8 @@ public class Cita
     }
 
     /**
-     *
-     * @return
+     * Devuelve el dia de la fecha de la cita
+     * @return int - Día de la fecha de la cita indicada
      */
     public int getDay() {
         return day;
@@ -48,8 +49,8 @@ public class Cita
     }
 
     /**
-     *
-     * @return
+     * Devuelve el mes en la fecha de la cita
+     * @return int - Mes de la fecha de la cita indicada
      */
     public int getMonth() {
         return month;
@@ -64,30 +65,30 @@ public class Cita
     }
 
     /**
-     *
-     * @return
+     * Devuelve el año en la fecha de la cita
+     * @return int - Año de la fecha de la cita indicada
      */
     public int getYear() {
         return year;
     }
 
     /**
-     *
-     * @param year
+     * Asigna un año a la fecha de la cita
+     * @param year - Año a asignar en la fecha
      */
     public void setYear(int year) {
         this.year = year;
     }
 
     /**
-     *
-     * @return
+     * Devuelve el paciente asignado de la cita
+     * @return Paciente - Paciente asignada a la cita
      */
     public Paciente getPacienteAsignado() { return pacienteAsignado; }
 
     /**
-     *
-     * @param pacienteAsignado
+     * Asigna un paciente a la cita indicada
+     * @param pacienteAsignado - Paciente a asignar a la cita
      */
     public void setPacienteAsignado(Paciente pacienteAsignado) { this.pacienteAsignado = pacienteAsignado; }
 
