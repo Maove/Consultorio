@@ -7,6 +7,10 @@ public class PanelTabs extends JPanel
 {
     private JTabbedPane tabs;
 
+    private PanelListaPacientes panelListaPacientes;
+
+    private PanelListaCitas panelListaCitas;
+
     public PanelTabs()
     {
         setBorder(BorderFactory.createTitledBorder("Tabs"));
@@ -16,10 +20,16 @@ public class PanelTabs extends JPanel
 
         add(tabs, BorderLayout.NORTH);
 
-        tabs.addTab("Pestaña 1", new JButton("Este es un botón de prueba 1"));
-        //tabs.add(new JButton("Este es un botón de prueba"));
-        tabs.addTab("Pestaña 2", new JButton("Este es un botón de prueba 2"));
+        panelListaPacientes = new PanelListaPacientes();
+        panelListaCitas = new PanelListaCitas();
+
+        tabs.addTab("Citas", panelListaCitas);
+        tabs.addTab("Pacientes", panelListaPacientes);
     }
 
     public JTabbedPane darTab() { return tabs; }
+
+    public PanelListaCitas darPanelListaCitas() { return panelListaCitas; }
+
+    public PanelListaPacientes darPanelListaPacientes() { return panelListaPacientes; }
 }

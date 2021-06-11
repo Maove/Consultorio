@@ -243,10 +243,10 @@ public class Main
             }
         });
         */
-        ventanaPrincipal.darPanelListaCitas().darListaCitas().addMouseListener(new MouseListener() {
+        ventanaPrincipal.darPanelTabs().darPanelListaCitas().darListaCitas().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                Cita citaSeleccionada = (Cita) ventanaPrincipal.darPanelListaCitas().darListaCitas().getSelectedValue();
+                Cita citaSeleccionada = (Cita) ventanaPrincipal.darPanelTabs().darPanelListaCitas().darListaCitas().getSelectedValue();
                 ventanaPrincipal.darPanelDatos().darTxtNombre().setText(citaSeleccionada.getPacienteAsignado().darNombre());
                 ventanaPrincipal.darPanelDatos().darTxtCedula().setText(citaSeleccionada.getPacienteAsignado().darCedula());
                 ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
@@ -288,7 +288,7 @@ public class Main
                 int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
                 int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
-                ventanaPrincipal.darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(day, month, year));
+                ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(day, month, year));
             }
         });
     }

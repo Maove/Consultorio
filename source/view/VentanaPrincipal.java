@@ -64,6 +64,8 @@ public class VentanaPrincipal extends JFrame
 
     public PanelCalendario darPanelCalendario() { return panelCalendario; }
 
+    public PanelTabs darPanelTabs() { return panelTabs; }
+
     public VentanaAgregarPaciente darVentanaAgregarPaciente() { return ventanaAgregarPaciente; }
 
     public VentanaAgregarCita darVentanaAgregarCita() { return ventanaAgregarCita; }
