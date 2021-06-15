@@ -40,7 +40,7 @@ public class Main
         inicializarVentanaPrincipal();
         inicializarBotonesVentanaPrincipal();
         inicializarBotonesVentanaAgregarPaciente();
-        //inicializarBotonesVentanaAgregarCita();
+        inicializarBotonesVentanaAgregarCita();
         inicializarListaPacientes();
         inicializarListaCitas();
         inicializarCalendario();
@@ -207,6 +207,26 @@ public class Main
             @Override
             public void actionPerformed(ActionEvent e) {
                 ventanaPrincipal.darVentanaAgregarPaciente().dispose();
+            }
+        });
+    }
+
+    /**
+     * Initializes buttons in JFrame VentanaAgregarCita
+     */
+    public static void inicializarBotonesVentanaAgregarCita()
+    {
+        ventanaPrincipal.darVentanaAgregarCita().getBtnAgregar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        ventanaPrincipal.darVentanaAgregarCita().getBtnCancelar().addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ventanaPrincipal.darVentanaAgregarCita().dispose();
             }
         });
     }
