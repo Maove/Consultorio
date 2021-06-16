@@ -110,16 +110,17 @@ public class Main
             e.printStackTrace();
         }
 
-        System.out.println(modelo.darPacientes().size());
-
         Date fecha = new Date();
 
         int d = fecha.getDate();
         int m = fecha.getMonth()+1;
         int y = fecha.getYear();
 
+        ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,2021));
         ventanaPrincipal.darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,2021));
         //ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
+
+        modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(16,m,2021));
     }
 
     /**
@@ -172,7 +173,7 @@ public class Main
             ventanaAgregarCita.getComboPacientes().addItem(pacientes.get(i));
         }
 
-        for(int i=7;i<21;i++)
+        for(int i=7;i<=20;i++)
         {
             for(int j=0;j<=45;j+=15)
             {
