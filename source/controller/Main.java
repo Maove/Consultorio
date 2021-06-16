@@ -219,7 +219,7 @@ public class Main
         ventanaPrincipal.darVentanaAgregarCita().getBtnAgregar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                ventanaPrincipal.darVentanaAgregarCita().getComboPacientes().getSelectedIndex();
             }
         });
 
