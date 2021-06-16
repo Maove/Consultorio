@@ -17,6 +17,7 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Main
@@ -95,10 +96,9 @@ public class Main
             {
                 String[] datos = lineActual.split(";");
 
-                Paciente nuevoPaciente = new Paciente(datos[3], datos[4]);
-                modelo.darPacientes().add(nuevoPaciente);
+                Paciente pacienteaAsignar = modelo.buscarPacientePorCedula(datos[4]);
 
-                Cita nuevaCita = new Cita(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Integer.parseInt(datos[2]), nuevoPaciente, Integer.parseInt(datos[5]));
+                Cita nuevaCita = new Cita(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Integer.parseInt(datos[2]), pacienteaAsignar, Integer.parseInt(datos[5]));
                 modelo.darCitas().add(nuevaCita);
 
                 lineActual = br.readLine();
@@ -109,6 +109,8 @@ public class Main
         {
             e.printStackTrace();
         }
+
+        System.out.println(modelo.darPacientes().size());
 
         Date fecha = new Date();
 
@@ -130,24 +132,6 @@ public class Main
     }
 
     /**
-     * Initializes JFrame for VentanaAgregarPaciente
-     */
-    private static void inicializarVentanaAgregarPaciente()
-    {
-        VentanaAgregarPaciente ventanaAgregarPaciente = ventanaPrincipal.darVentanaAgregarPaciente();
-        ventanaAgregarPaciente.setVisible(true);
-    }
-
-    /**
-     * Initializes JFrame for VentanaAgregarCita
-     */
-    private static void inicializarVentanaAgregarCita()
-    {
-        VentanaAgregarCita ventanaAgregarCita = ventanaPrincipal.darVentanaAgregarCita();
-        ventanaAgregarCita.setVisible(true);
-    }
-
-    /**
      * Initializes buttons in main JFrame
      */
     private static void inicializarBotonesVentanaPrincipal()
@@ -165,6 +149,41 @@ public class Main
                 inicializarVentanaAgregarCita();
             }
         });
+    }
+
+    /**
+     * Initializes JFrame for VentanaAgregarPaciente
+     */
+    private static void inicializarVentanaAgregarPaciente()
+    {
+        VentanaAgregarPaciente ventanaAgregarPaciente = ventanaPrincipal.darVentanaAgregarPaciente();
+        ventanaAgregarPaciente.setVisible(true);
+    }
+
+    /**
+     * Initializes JFrame for VentanaAgregarCita
+     */
+    private static void inicializarVentanaAgregarCita()
+    {
+        VentanaAgregarCita ventanaAgregarCita = ventanaPrincipal.darVentanaAgregarCita();
+        ArrayList<Paciente> pacientes = modelo.darPacientes();
+        for(int i=0;i<pacientes.size();i++)
+        {
+            ventanaAgregarCita.getComboPacientes().addItem(pacientes.get(i));
+        }
+
+        for(int i=7;i<21;i++)
+        {
+            for(int j=0;j<=45;j+=15)
+            {
+                if(j==0)
+                    ventanaAgregarCita.getHora().addItem(i + ":" + j + "0");
+                else
+                    ventanaAgregarCita.getHora().addItem(i + ":" + j);
+            }
+        }
+
+        ventanaAgregarCita.setVisible(true);
     }
 
     /**
@@ -251,18 +270,6 @@ public class Main
      */
     private static void inicializarListaCitas()
     {
-        /*
-        ventanaPrincipal.darPanelListaCitas().darListaCitas().addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                Cita citaSeleccionada = (Cita) ventanaPrincipal.darPanelListaCitas().darListaCitas().getSelectedValue();
-                ventanaPrincipal.darPanelDatos().darTxtNombre().setText(citaSeleccionada.getPacienteAsignado().darNombre());
-                ventanaPrincipal.darPanelDatos().darTxtCedula().setText(citaSeleccionada.getPacienteAsignado().darCedula());
-                ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
-                ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora());
-            }
-        });
-        */
         ventanaPrincipal.darPanelTabs().darPanelListaCitas().darListaCitas().addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {

@@ -16,17 +16,12 @@ public class VentanaAgregarCita extends JFrame
     /**
      *
      */
-    private JComboBox pacientes;
+    private JComboBox pacientes, hora;
 
     /**
      *
      */
     private JCalendar fecha;
-
-    /**
-     *
-     */
-    private JComboBox hora;
 
     /**
      *
