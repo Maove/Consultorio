@@ -95,9 +95,7 @@ public class Main
             while(lineActual!=null)
             {
                 String[] datos = lineActual.split(";");
-
                 Paciente pacienteaAsignar = modelo.buscarPacientePorCedula(datos[4]);
-
                 Cita nuevaCita = new Cita(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Integer.parseInt(datos[2]), pacienteaAsignar, Integer.parseInt(datos[5]));
                 modelo.darCitas().add(nuevaCita);
 
@@ -117,10 +115,9 @@ public class Main
         int y = fecha.getYear();
 
         ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,2021));
-        ventanaPrincipal.darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,2021));
         //ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
 
-        modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(16,m,2021));
+        //modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(16,m,2021));
     }
 
     /**

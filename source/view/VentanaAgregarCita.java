@@ -4,6 +4,7 @@ import com.toedter.calendar.JCalendar;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class VentanaAgregarCita extends JFrame
@@ -54,8 +55,14 @@ public class VentanaAgregarCita extends JFrame
 
         add(panelAux1, BorderLayout.NORTH);
 
+        labFecha = new JLabel("Fecha: ");
         fecha = new JCalendar();
-        add(fecha, BorderLayout.CENTER);
+        JPanel panelFecha = new JPanel();
+        panelFecha.setLayout(new BorderLayout());
+        panelFecha.add(labFecha, BorderLayout.NORTH);
+        panelFecha.add(fecha, BorderLayout.CENTER);
+
+        add(panelFecha, BorderLayout.CENTER);
 
         JPanel panelAux2 = new JPanel();
         panelAux2.setLayout(new GridLayout(1,2));
