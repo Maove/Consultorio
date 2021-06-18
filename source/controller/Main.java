@@ -172,7 +172,7 @@ public class Main
 
         for(int i=7;i<=20;i++)
         {
-            for(int j=0;j<=45;j+=15)
+            for(int j=0;j<=30;j+=30)
             {
                 if(j==0)
                     ventanaAgregarCita.getHora().addItem(i + ":" + j + "0");
@@ -195,28 +195,33 @@ public class Main
                 String nombrePaciente = ventanaPrincipal.darVentanaAgregarPaciente().getTxtNombre().getText();
                 String cedulaPaciente = ventanaPrincipal.darVentanaAgregarPaciente().getTxtCedula().getText();
 
-                try
+                if(!nombrePaciente.equals(""))
                 {
-                    Paciente nuevoPaciente = new Paciente(nombrePaciente, cedulaPaciente);
-                    modelo.agregarPaciente(nuevoPaciente);
+                    try
+                    {
+                        Paciente nuevoPaciente = new Paciente(nombrePaciente, cedulaPaciente);
+                        modelo.agregarPaciente(nuevoPaciente);
 
-                    FileWriter fileWriter = new FileWriter("./files/pacientes.txt", true);
-                    BufferedWriter bw = new BufferedWriter(fileWriter);
-                    bw.write(nombrePaciente + ";" + cedulaPaciente);
-                    bw.newLine();
-                    bw.close();
+                        FileWriter fileWriter = new FileWriter("./files/pacientes.txt", true);
+                        BufferedWriter bw = new BufferedWriter(fileWriter);
+                        bw.write(nombrePaciente + ";" + cedulaPaciente);
+                        bw.newLine();
+                        bw.close();
 
-                    JOptionPane.showMessageDialog(null,"El paciente se ha agregado con éxito!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
-                    ventanaPrincipal.darVentanaAgregarPaciente().dispose();
-                    ventanaPrincipal.darVentanaAgregarPaciente().getTxtNombre().setText("");
-                    ventanaPrincipal.darVentanaAgregarPaciente().getTxtCedula().setText("");
+                        JOptionPane.showMessageDialog(null,"El paciente se ha agregado con éxito!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
+                        ventanaPrincipal.darVentanaAgregarPaciente().dispose();
+                        ventanaPrincipal.darVentanaAgregarPaciente().getTxtNombre().setText("");
+                        ventanaPrincipal.darVentanaAgregarPaciente().getTxtCedula().setText("");
 
-                    ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
+                        ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
 
-                } catch (Exception ex)
-                {
-                    ex.printStackTrace();
+                    } catch (Exception ex)
+                    {
+                        ex.printStackTrace();
+                    }
                 }
+                else
+                    JOptionPane.showMessageDialog(null,"El nombre del paciente no puede ser vacío","Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
