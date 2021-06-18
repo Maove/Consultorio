@@ -17,6 +17,10 @@ import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -33,6 +37,8 @@ public class Main
      * Relation with view
      */
     private static VentanaPrincipal ventanaPrincipal;
+
+    private static Connection conexionDB;
 
     /**
      * Executable main method
@@ -64,8 +70,31 @@ public class Main
     {
         modelo = new Consultorio();
 
+        conexionDB = null;
+
         try
         {
+            //Class.forName("com.mysql.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/consultorio";
+            String user = "root";
+            String pwd = "root";
+            Connection con= DriverManager.getConnection(url, user, pwd);
+
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM pacientes");
+
+            System.out.println("Los pacientes del consultorio son:");
+            while(rs.next())
+            {
+                System.out.println(rs.getString(1) + " " + rs.getString(2));
+
+                Paciente nuevoPaciente = new Paciente(rs.getString(1), rs.getString(2));
+                modelo.agregarPaciente(nuevoPaciente);
+            }
+
+            con.close();
+
+            /*
             FileReader fileReader = new FileReader("./files/pacientes.txt");
             BufferedReader br = new BufferedReader(fileReader);
 
@@ -78,10 +107,12 @@ public class Main
                 Paciente nuevoPaciente = new Paciente(datos[0], datos[1]);
                 modelo.darPacientes().add(nuevoPaciente);
 
+                stmt.execute("INSERT INTO `pacientes`(`nombre`, `id`) VALUES ('" + datos[0] + "','" + datos[1] + "')");
                 lineActual = br.readLine();
             }
-
+            con.close();
             br.close();
+            */
         } catch (Exception e)
         {
             e.printStackTrace();
