@@ -19,6 +19,8 @@ import java.beans.PropertyChangeListener;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main
 {
@@ -197,28 +199,50 @@ public class Main
 
                 if(!nombrePaciente.equals(""))
                 {
-                    try
+                    if(!cedulaPaciente.equals(""))
                     {
-                        Paciente nuevoPaciente = new Paciente(nombrePaciente, cedulaPaciente);
-                        modelo.agregarPaciente(nuevoPaciente);
+                        Pattern pat = Pattern.compile("[0-9]*");
+                        Matcher mat = pat.matcher(cedulaPaciente);
+                        if(mat.matches())
+                        {
+                            if(cedulaPaciente.length() >= 6 && cedulaPaciente.length() <= 10)
+                            {
+                                try
+                                {
+                                    if(modelo.buscarPacientePorCedula(cedulaPaciente)==null)
+                                    {
+                                        Paciente nuevoPaciente = new Paciente(nombrePaciente, cedulaPaciente);
+                                        modelo.agregarPaciente(nuevoPaciente);
 
-                        FileWriter fileWriter = new FileWriter("./files/pacientes.txt", true);
-                        BufferedWriter bw = new BufferedWriter(fileWriter);
-                        bw.write(nombrePaciente + ";" + cedulaPaciente);
-                        bw.newLine();
-                        bw.close();
+                                        FileWriter fileWriter = new FileWriter("./files/pacientes.txt", true);
+                                        BufferedWriter bw = new BufferedWriter(fileWriter);
+                                        bw.write(nombrePaciente + ";" + cedulaPaciente);
+                                        bw.newLine();
+                                        bw.close();
 
-                        JOptionPane.showMessageDialog(null,"El paciente se ha agregado con éxito!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
-                        ventanaPrincipal.darVentanaAgregarPaciente().dispose();
-                        ventanaPrincipal.darVentanaAgregarPaciente().getTxtNombre().setText("");
-                        ventanaPrincipal.darVentanaAgregarPaciente().getTxtCedula().setText("");
+                                        JOptionPane.showMessageDialog(null,"El paciente se ha agregado con éxito!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
+                                        ventanaPrincipal.darVentanaAgregarPaciente().dispose();
+                                        ventanaPrincipal.darVentanaAgregarPaciente().getTxtNombre().setText("");
+                                        ventanaPrincipal.darVentanaAgregarPaciente().getTxtCedula().setText("");
 
-                        ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
-
-                    } catch (Exception ex)
-                    {
-                        ex.printStackTrace();
+                                        ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
+                                    }
+                                    else
+                                        JOptionPane.showMessageDialog(null, "La cédula ya se encuentra registrada", "Error", JOptionPane.ERROR_MESSAGE);
+                                } catch (Exception ex)
+                                {
+                                    ex.printStackTrace();
+                                }
+                            }
+                            else
+                                JOptionPane.showMessageDialog(null, "La cédula debe contener de 6 a 10 carácteres", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                        else
+                            JOptionPane.showMessageDialog(null, "La cédula no puede contener letras", "Error", JOptionPane.ERROR_MESSAGE);
                     }
+                    else
+                        JOptionPane.showMessageDialog(null, "La cédula del paciente no puede ser vacía", "Error", JOptionPane.ERROR_MESSAGE);
+
                 }
                 else
                     JOptionPane.showMessageDialog(null,"El nombre del paciente no puede ser vacío","Error", JOptionPane.ERROR_MESSAGE);
