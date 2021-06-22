@@ -46,6 +46,8 @@ public class Main
      */
     public static void main(String[] args)
     {
+        conexionDB = null;
+
         inicializarVentanaPrincipal();
         inicializarBotonesVentanaPrincipal();
         inicializarBotonesVentanaAgregarPaciente();
@@ -70,11 +72,8 @@ public class Main
     {
         modelo = new Consultorio();
 
-        conexionDB = null;
-
         try
         {
-            //Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/consultorio";
             String user = "root";
             String pwd = "root";
@@ -245,11 +244,17 @@ public class Main
                                         Paciente nuevoPaciente = new Paciente(nombrePaciente, cedulaPaciente);
                                         modelo.agregarPaciente(nuevoPaciente);
 
-                                        FileWriter fileWriter = new FileWriter("./files/pacientes.txt", true);
-                                        BufferedWriter bw = new BufferedWriter(fileWriter);
-                                        bw.write(nombrePaciente + ";" + cedulaPaciente);
-                                        bw.newLine();
-                                        bw.close();
+                                        String url = "jdbc:mysql://localhost:3306/consultorio";
+                                        String user = "root";
+                                        String pwd = "root";
+                                        Connection con= DriverManager.getConnection(url, user, pwd);
+
+                                        Statement stmt = con.createStatement();
+                                        String query = "INSERT INTO pacientes(nombre, id) VALUES ('" + nombrePaciente + "', '" + cedulaPaciente + "'); ";
+                                        System.out.println(query);
+                                        stmt.execute(query);
+
+                                        con.close();
 
                                         JOptionPane.showMessageDialog(null,"El paciente se ha agregado con éxito!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
                                         ventanaPrincipal.darVentanaAgregarPaciente().dispose();
