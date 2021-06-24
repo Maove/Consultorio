@@ -5,7 +5,7 @@ public class Cita
     /**
      *
      */
-    private int day, month, year, hora;
+    private int day, month, year, hora, minuto;
 
     /**
      *
@@ -20,7 +20,7 @@ public class Cita
      * @param pac - Paciente asignado para la nueva cita
      * @param h - Hora de la cita
      */
-    public Cita(int d, int m, int y, Paciente pac, int h)
+    public Cita(int d, int m, int y, Paciente pac, int h, int min)
     {
         day = d;
 
@@ -31,6 +31,8 @@ public class Cita
         pacienteAsignado = pac;
 
         hora = h;
+
+        minuto = min;
     }
 
     /**
@@ -96,6 +98,10 @@ public class Cita
     public int getHora() { return hora; }
 
     public void setHora(int h) { hora = h; }
+
+    public int getMinuto() { return minuto; }
+
+    public void setMinuto(int min) { minuto = min; }
 
     public String toString()
     {

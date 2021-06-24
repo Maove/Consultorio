@@ -128,7 +128,7 @@ public class Main
             {
                 String[] datos = lineActual.split(";");
                 Paciente pacienteaAsignar = modelo.buscarPacientePorCedula(datos[4]);
-                Cita nuevaCita = new Cita(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Integer.parseInt(datos[2]), pacienteaAsignar, Integer.parseInt(datos[5]));
+                Cita nuevaCita = new Cita(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]), Integer.parseInt(datos[2]), pacienteaAsignar, Integer.parseInt(datos[5]), Integer.parseInt(datos[6]));
                 modelo.darCitas().add(nuevaCita);
 
                 lineActual = br.readLine();
@@ -340,7 +340,7 @@ public class Main
                 ventanaPrincipal.darPanelDatos().darTxtNombre().setText(citaSeleccionada.getPacienteAsignado().darNombre());
                 ventanaPrincipal.darPanelDatos().darTxtCedula().setText(citaSeleccionada.getPacienteAsignado().darCedula());
                 ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
-                ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora());
+                ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora() + ":" + citaSeleccionada.getMinuto());
             }
 
             @Override
