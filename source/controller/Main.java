@@ -77,9 +77,9 @@ public class Main
             String url = "jdbc:mysql://localhost:3306/consultorio";
             String user = "root";
             String pwd = "root";
-            Connection con= DriverManager.getConnection(url, user, pwd);
+            conexionDB = DriverManager.getConnection(url, user, pwd);
 
-            Statement stmt = con.createStatement();
+            Statement stmt = conexionDB.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM pacientes");
 
             System.out.println("Los pacientes del consultorio son:");
@@ -91,7 +91,7 @@ public class Main
                 modelo.agregarPaciente(nuevoPaciente);
             }
 
-            con.close();
+            conexionDB.close();
 
             /*
             FileReader fileReader = new FileReader("./files/pacientes.txt");
@@ -115,6 +115,7 @@ public class Main
         } catch (Exception e)
         {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "No es posible conectase con la base de datos", "Error Base de datos", JOptionPane.ERROR_MESSAGE);
         }
 
         try
