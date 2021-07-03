@@ -20,12 +20,12 @@ public class VentanaAgregarCita extends JFrame
     private JComboBox pacientes, hora;
 
     /**
-     *
+     * Objeto de la clase JCalendar que representa el calendario para agregar una cita
      */
     private JCalendar fecha;
 
     /**
-     *
+     * Botones Agregar y Cancelar
      */
     private JButton btnAgregar, btnCancelar;
 

@@ -18,7 +18,7 @@ public class PanelTabs extends JPanel
 
         tabs = new JTabbedPane();
 
-        add(tabs, BorderLayout.NORTH);
+        add(tabs, BorderLayout.CENTER);
 
         panelListaPacientes = new PanelListaPacientes();
         panelListaCitas = new PanelListaCitas();
