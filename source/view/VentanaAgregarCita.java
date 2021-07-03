@@ -154,7 +154,7 @@ public class VentanaAgregarCita extends JFrame
      *
      * @return
      */
-    public JComboBox getHora() { return hora; }
+    public JComboBox getComboHora() { return hora; }
 
     /**
      *

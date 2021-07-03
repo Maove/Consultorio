@@ -105,6 +105,9 @@ public class Cita
 
     public String toString()
     {
-        return pacienteAsignado.darNombre() + " - " + hora + ":00";  //day + "/" + month + "/" + year;
+        if(minuto==30)
+            return pacienteAsignado.darNombre() + " - " + hora + ":" + minuto;  //day + "/" + month + "/" + year;
+        else
+            return pacienteAsignado.darNombre() + " - " + hora + ":00";
     }
 }

@@ -208,11 +208,12 @@ public class Main
             for(int j=0;j<=30;j+=30)
             {
                 if(j==0)
-                    ventanaAgregarCita.getHora().addItem(i + ":" + j + "0");
+                    ventanaAgregarCita.getComboHora().addItem(i + ":" + j + "0");
                 else
-                    ventanaAgregarCita.getHora().addItem(i + ":" + j);
+                    ventanaAgregarCita.getComboHora().addItem(i + ":" + j);
             }
         }
+
 
         ventanaAgregarCita.setVisible(true);
     }
@@ -302,7 +303,22 @@ public class Main
         ventanaPrincipal.darVentanaAgregarCita().getBtnAgregar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ventanaPrincipal.darVentanaAgregarCita().getComboPacientes().getSelectedIndex();
+                Paciente pacienteAAgregar = (Paciente) ventanaPrincipal.darVentanaAgregarCita().getComboPacientes().getSelectedItem();
+                String hora = (String) ventanaPrincipal.darVentanaAgregarCita().getComboHora().getSelectedItem();
+                String[] date = hora.split(":");
+                int ano = ventanaPrincipal.darVentanaAgregarCita().getFecha().getYearChooser().getYear();
+                int mes = ventanaPrincipal.darVentanaAgregarCita().getFecha().getMonthChooser().getMonth();
+                int dia = ventanaPrincipal.darVentanaAgregarCita().getFecha().getDayChooser().getDay();
+
+                Cita nuevaCita = new Cita(dia, mes, ano, pacienteAAgregar, Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+                modelo.darCitas().add(nuevaCita);
+
+                ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(dia, mes, ano));
+
+                ventanaPrincipal.darVentanaAgregarCita().dispose();
+
+
+
             }
         });
 

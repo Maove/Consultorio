@@ -44,7 +44,7 @@ public class VentanaPrincipal extends JFrame
         add(panelTabs, BorderLayout.EAST);
 
         panelOpciones = new PanelOpciones();
-        add(panelOpciones, BorderLayout.SOUTH);
+        add(panelOpciones, BorderLayout.WEST);
 
         panelCalendario = new PanelCalendario();
         add(panelCalendario, BorderLayout.CENTER);

@@ -9,7 +9,7 @@ public class PanelOpciones extends JPanel
 
     public PanelOpciones()
     {
-        setLayout(new GridLayout(1,2));
+        setLayout(new GridLayout(6,1));
 
         btnAgregarPaciente = new JButton("Nuevo Paciente");
         btnAgregarPaciente.setToolTipText("Click para generar ventana de creación de paciente");
