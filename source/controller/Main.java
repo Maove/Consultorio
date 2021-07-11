@@ -74,7 +74,7 @@ public class Main
 
         try
         {
-            String url = "jdbc:mysql://localhost:3306/consultorio";
+            String url = "jdbc:mysql://192.168.1.1:3306/consultorio";
             String user = "root";
             String pwd = "root";
             conexionDB = DriverManager.getConnection(url, user, pwd);
@@ -213,7 +213,6 @@ public class Main
                     ventanaAgregarCita.getComboHora().addItem(i + ":" + j);
             }
         }
-
 
         ventanaAgregarCita.setVisible(true);
     }

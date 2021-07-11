@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import javax.swing.plaf.IconUIResource;
 import java.awt.*;
 
 public class PanelOpciones extends JPanel
@@ -11,11 +12,13 @@ public class PanelOpciones extends JPanel
     {
         setLayout(new GridLayout(6,1));
 
-        btnAgregarPaciente = new JButton("Nuevo Paciente");
+        Icon iconPaciente = new ImageIcon("./files/user.png");
+        btnAgregarPaciente = new JButton(iconPaciente);
         btnAgregarPaciente.setToolTipText("Click para generar ventana de creación de paciente");
         add(btnAgregarPaciente);
 
-        btnAgregarCita = new JButton("Nueva Cita");
+        Icon iconCita = new ImageIcon("./files/date.png");
+        btnAgregarCita = new JButton(iconCita);
         btnAgregarCita.setToolTipText("Click para generar ventana de creación de cita");
         add(btnAgregarCita);
     }
