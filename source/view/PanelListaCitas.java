@@ -16,7 +16,7 @@ public class PanelListaCitas extends JPanel
 
     public PanelListaCitas()
     {
-        setBorder(new TitledBorder("Citas del día"));
+        setBorder(new TitledBorder("Agenda del día"));
         setLayout(new GridLayout(1,1));
 
         listaCitas = new JList();

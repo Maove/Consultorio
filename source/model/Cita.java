@@ -3,12 +3,12 @@ package model;
 public class Cita
 {
     /**
-     *
+     * Día, mes, año, hora y minuto de la cita
      */
     private int day, month, year, hora, minuto;
 
     /**
-     *
+     * Paciente asignado a la cita
      */
     private Paciente pacienteAsignado;
 

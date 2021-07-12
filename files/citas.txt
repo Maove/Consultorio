@@ -8,4 +8,4 @@
 16;6;2021;Mariana Esquivel Estrada;6538329;18;00
 16;6;2021;Mariana Esquivel Estrada;6538329;16;00
 16;6;2021;Mauricio Vasquez Esquivel;1144057297;14;00
-16;6;2021;Andrea Stephania Ramirez Lopez;1107930261;8;00
+11;7;2021;Andrea Stephania Ramirez Lopez;1107930261;8;00

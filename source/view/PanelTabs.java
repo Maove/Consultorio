@@ -13,7 +13,7 @@ public class PanelTabs extends JPanel
 
     public PanelTabs()
     {
-        setBorder(BorderFactory.createTitledBorder("Tabs"));
+       // setBorder(BorderFactory.createTitledBorder("Tabs"));
         setLayout(new BorderLayout());
 
         tabs = new JTabbedPane();

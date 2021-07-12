@@ -79,19 +79,19 @@ public class Main
             String pwd = "root";
             conexionDB = DriverManager.getConnection(url, user, pwd);
 
-            Statement stmt = conexionDB.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM pacientes");
+            Statement stmtPacientes = conexionDB.createStatement();
+            ResultSet rsPacientes = stmtPacientes.executeQuery("SELECT * FROM pacientes");
 
             System.out.println("Los pacientes del consultorio son:");
-            while(rs.next())
+            while(rsPacientes.next())
             {
-                System.out.println(rs.getString(1) + " " + rs.getString(2));
+                System.out.println(rsPacientes.getString(1) + " " + rsPacientes.getString(2));
 
-                Paciente nuevoPaciente = new Paciente(rs.getString(1), rs.getString(2));
+                Paciente nuevoPaciente = new Paciente(rsPacientes.getString(1), rsPacientes.getString(2));
                 modelo.agregarPaciente(nuevoPaciente);
             }
 
-            conexionDB.close();
+
 
             /*
             FileReader fileReader = new FileReader("./files/pacientes.txt");
@@ -120,7 +120,20 @@ public class Main
 
         try
         {
-            FileReader fileReader = new FileReader("./files/citas.txt");
+            Statement stmtCitas = conexionDB.createStatement();
+            ResultSet rsCitas = stmtCitas.executeQuery("SELECT * FROM citas");
+
+            System.out.println("Los pacientes del consultorio son:");
+            while(rsCitas.next())
+            {
+                Cita nuevaCita = new Cita(rsCitas.getInt(1), rsCitas.getInt(2), rsCitas.getInt(3), modelo.buscarPacientePorNombre(rsCitas.getString(6)), rsCitas.getInt(4), rsCitas.getInt(5));
+                modelo.agregarCita(nuevaCita);
+            }
+
+            conexionDB.close();
+
+
+            /*FileReader fileReader = new FileReader("./files/citas.txt");
             BufferedReader br = new BufferedReader(fileReader);
 
             String lineActual = br.readLine();
@@ -136,6 +149,7 @@ public class Main
             }
 
             br.close();
+            */
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -148,7 +162,7 @@ public class Main
         int y = fecha.getYear();
 
         ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,2021));
-        //ventanaPrincipal.darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
+        ventanaPrincipal.darPanelTabs().darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
 
         //modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(16,m,2021));
     }
@@ -334,12 +348,35 @@ public class Main
      */
     private static void inicializarListaPacientes()
     {
-        ventanaPrincipal.darPanelListaPacientes().darListaPacientes().addListSelectionListener(new ListSelectionListener() {
+        ventanaPrincipal.darPanelTabs().darPanelListaPacientes().darListaPacientes().addMouseListener(new MouseListener() {
             @Override
-            public void valueChanged(ListSelectionEvent e) {
-                Paciente pacienteSeleccionado = (Paciente) ventanaPrincipal.darPanelListaPacientes().darListaPacientes().getSelectedValue();
-                ventanaPrincipal.darPanelDatos().darTxtNombre().setText(pacienteSeleccionado.darNombre());
-                ventanaPrincipal.darPanelDatos().darTxtCedula().setText(pacienteSeleccionado.darCedula());
+            public void mouseClicked(MouseEvent e) {
+                Paciente pacienteSeleccionado = (Paciente) ventanaPrincipal.darPanelTabs().darPanelListaPacientes().darListaPacientes().getSelectedValue();
+                System.out.println(pacienteSeleccionado);
+                /*ventanaPrincipal.darPanelDatos().darTxtNombre().setText(pacienteSeleccionado.getPacienteAsignado().darNombre());
+                ventanaPrincipal.darPanelDatos().darTxtCedula().setText(citaSeleccionada.getPacienteAsignado().darCedula());
+                ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
+                ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora() + ":" + citaSeleccionada.getMinuto());*/
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
             }
         });
     }
