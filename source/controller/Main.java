@@ -74,7 +74,7 @@ public class Main
 
         try
         {
-            String url = "jdbc:mysql://192.168.1.1:3306/consultorio";
+            String url = "jdbc:mysql://localhost:3306/consultorio";
             String user = "root";
             String pwd = "root";
             conexionDB = DriverManager.getConnection(url, user, pwd);
@@ -123,7 +123,7 @@ public class Main
             Statement stmtCitas = conexionDB.createStatement();
             ResultSet rsCitas = stmtCitas.executeQuery("SELECT * FROM citas");
 
-            System.out.println("Los pacientes del consultorio son:");
+            System.out.println("Las citas del consultorio son:");
             while(rsCitas.next())
             {
                 Cita nuevaCita = new Cita(rsCitas.getInt(1), rsCitas.getInt(2), rsCitas.getInt(3), modelo.buscarPacientePorNombre(rsCitas.getString(6)), rsCitas.getInt(4), rsCitas.getInt(5));
