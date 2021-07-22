@@ -8,20 +8,19 @@ import view.VentanaAgregarPaciente;
 import view.VentanaPrincipal;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -115,7 +114,7 @@ public class Main
         } catch (Exception e)
         {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null, "No es posible conectase con la base de datos", "Error Base de datos", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "No es posible conectarse con la base de datos", "Error Base de datos", JOptionPane.ERROR_MESSAGE);
         }
 
         try
@@ -126,10 +125,10 @@ public class Main
             System.out.println("Las citas del consultorio son:");
             while(rsCitas.next())
             {
+                System.out.println(rsCitas.getInt(1) + " " + rsCitas.getInt(2) + " " + rsCitas.getInt(3));
+
                 Cita nuevaCita = new Cita(rsCitas.getInt(1), rsCitas.getInt(2), rsCitas.getInt(3), modelo.buscarPacientePorNombre(rsCitas.getString(6)), rsCitas.getInt(4), rsCitas.getInt(5));
-                System.out.println(nuevaCita.getPacienteAsignado().darNombre());
                 modelo.agregarCita(nuevaCita);
-                System.out.println(modelo.darCitas().get(0));
             }
 
             conexionDB.close();
@@ -155,15 +154,22 @@ public class Main
         } catch (Exception e)
         {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "No es posible conectarse con la base de datos", "Error Base de datos", JOptionPane.ERROR_MESSAGE);
         }
 
         Date fecha = new Date();
 
         int d = fecha.getDate();
         int m = fecha.getMonth()+1;
-        int y = fecha.getYear();
+        int y = Calendar.getInstance().get(Calendar.YEAR);
 
-        ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,2021));
+        JPanel jpanel = ventanaPrincipal.darPanelCalendario().darCalendario().getDayChooser().getDayPanel();
+        Component components[] = jpanel.getComponents();
+
+        if(d==22 && m==7 && y==2021)
+            components[d+ventanaPrincipal.darPanelCalendario().darCalendario().getCalendar().get(Calendar.DAY_OF_WEEK)+5].setBackground(Color.blue);
+
+        ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,y));
         ventanaPrincipal.darPanelTabs().darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
 
         //modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(16,m,2021));
@@ -322,7 +328,7 @@ public class Main
                 String hora = (String) ventanaPrincipal.darVentanaAgregarCita().getComboHora().getSelectedItem();
                 String[] date = hora.split(":");
                 int ano = ventanaPrincipal.darVentanaAgregarCita().getFecha().getYearChooser().getYear();
-                int mes = ventanaPrincipal.darVentanaAgregarCita().getFecha().getMonthChooser().getMonth();
+                int mes = ventanaPrincipal.darVentanaAgregarCita().getFecha().getMonthChooser().getMonth()+1;
                 int dia = ventanaPrincipal.darVentanaAgregarCita().getFecha().getDayChooser().getDay();
 
                 try
