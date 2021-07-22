@@ -127,7 +127,9 @@ public class Main
             while(rsCitas.next())
             {
                 Cita nuevaCita = new Cita(rsCitas.getInt(1), rsCitas.getInt(2), rsCitas.getInt(3), modelo.buscarPacientePorNombre(rsCitas.getString(6)), rsCitas.getInt(4), rsCitas.getInt(5));
+                System.out.println(nuevaCita.getPacienteAsignado().darNombre());
                 modelo.agregarCita(nuevaCita);
+                System.out.println(modelo.darCitas().get(0));
             }
 
             conexionDB.close();
@@ -316,22 +318,37 @@ public class Main
         ventanaPrincipal.darVentanaAgregarCita().getBtnAgregar().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Paciente pacienteAAgregar = (Paciente) ventanaPrincipal.darVentanaAgregarCita().getComboPacientes().getSelectedItem();
+                Paciente pacienteAAsignar = (Paciente) ventanaPrincipal.darVentanaAgregarCita().getComboPacientes().getSelectedItem();
                 String hora = (String) ventanaPrincipal.darVentanaAgregarCita().getComboHora().getSelectedItem();
                 String[] date = hora.split(":");
                 int ano = ventanaPrincipal.darVentanaAgregarCita().getFecha().getYearChooser().getYear();
                 int mes = ventanaPrincipal.darVentanaAgregarCita().getFecha().getMonthChooser().getMonth();
                 int dia = ventanaPrincipal.darVentanaAgregarCita().getFecha().getDayChooser().getDay();
 
-                Cita nuevaCita = new Cita(dia, mes, ano, pacienteAAgregar, Integer.parseInt(date[0]), Integer.parseInt(date[1]));
+                try
+                {
+                    String url = "jdbc:mysql://localhost:3306/consultorio";
+                    String user = "root";
+                    String pwd = "root";
+                    Connection con= DriverManager.getConnection(url, user, pwd);
+
+                    Statement stmt = con.createStatement();
+                    String query = "INSERT INTO `citas`(`day`, `month`, `year`, `hour`, `min`, `paciente`) VALUES (" + dia + ", " + mes + ", " + ano + ", " + date[0] + ", " + date[1] + ", '" + pacienteAAsignar.darNombre() + "');";
+                    stmt.execute(query);
+
+                    con.close();
+
+                    JOptionPane.showMessageDialog(null,"Cita agregada exitosamente!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
+                } catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                Cita nuevaCita = new Cita(dia, mes, ano, pacienteAAsignar, Integer.parseInt(date[0]), Integer.parseInt(date[1]));
                 modelo.darCitas().add(nuevaCita);
 
                 ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(dia, mes, ano));
 
                 ventanaPrincipal.darVentanaAgregarCita().dispose();
-
-
-
             }
         });
 
