@@ -229,13 +229,24 @@ public class Consultorio
         return eliminado;
     }
 
-    public void ordenarCitasDelDiaPorHora(ArrayList<Cita> citasDia)
+    public ArrayList<Cita> ordenarCitasDelDiaPorHora(ArrayList<Cita> citasDia)
     {
         System.out.println("El total de citas es: " + citasDia.size());
 
+        for(int i = 0; i<citasDia.size(); i++)
+        {
+            System.out.println(citasDia.get(i).getHora());
+        }
+
         Collections.sort(citasDia);
+
+        for(int i = 0; i<citasDia.size(); i++)
+        {
+            System.out.println(citasDia.get(i).getHora());
+        }
 
         System.out.println("Éxito ordenando las citas del día");
 
+        return citasDia;
     }
 }

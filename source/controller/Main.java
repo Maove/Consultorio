@@ -166,7 +166,8 @@ public class Main
         int m = fecha.getMonth()+1;
         int y = Calendar.getInstance().get(Calendar.YEAR);
 
-        ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,y));
+        ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(d,m,y)));
+        //ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,y));
         ventanaPrincipal.darPanelTabs().darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
 
         //modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(16,m,2021));
@@ -355,7 +356,8 @@ public class Main
                 Cita nuevaCita = new Cita(dia, mes, ano, pacienteAAsignar, Integer.parseInt(date[0]), Integer.parseInt(date[1]));
                 modelo.darCitas().add(nuevaCita);
 
-                ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(dia, mes, ano));
+                ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(dia,mes,ano)));
+                //ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(dia, mes, ano));
 
                 ventanaPrincipal.darVentanaAgregarCita().dispose();
             }
@@ -457,8 +459,8 @@ public class Main
                 int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
                 int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
-                ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(day, month, year));
-                modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(day,month,year));
+                ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(day,month,year)));
+
                 colorearDias();
             }
         });
