@@ -458,6 +458,7 @@ public class Main
                 int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
                 ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(day, month, year));
+                modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(day,month,year));
                 colorearDias();
             }
         });

@@ -1,7 +1,8 @@
 package model;
 
-public class Cita
-{
+import java.util.Comparator;
+
+public class Cita implements Comparable<Cita> {
     /**
      * Día, mes, año, hora y minuto de la cita
      */
@@ -14,14 +15,14 @@ public class Cita
 
     /**
      * Constructor de la clase Cita
-     * @param d - Día de la cita
-     * @param m - Mes de la cita
-     * @param y - Año de la cita
+     *
+     * @param d   - Día de la cita
+     * @param m   - Mes de la cita
+     * @param y   - Año de la cita
      * @param pac - Paciente asignado para la nueva cita
-     * @param h - Hora de la cita
+     * @param h   - Hora de la cita
      */
-    public Cita(int d, int m, int y, Paciente pac, int h, int min)
-    {
+    public Cita(int d, int m, int y, Paciente pac, int h, int min) {
         day = d;
 
         month = m;
@@ -37,6 +38,7 @@ public class Cita
 
     /**
      * Devuelve el dia de la fecha de la cita
+     *
      * @return int - Día de la fecha de la cita indicada
      */
     public int getDay() {
@@ -44,7 +46,6 @@ public class Cita
     }
 
     /**
-     *
      * @param day
      */
     public void setDay(int day) {
@@ -53,6 +54,7 @@ public class Cita
 
     /**
      * Devuelve el mes en la fecha de la cita
+     *
      * @return int - Mes de la fecha de la cita indicada
      */
     public int getMonth() {
@@ -60,7 +62,6 @@ public class Cita
     }
 
     /**
-     *
      * @param month
      */
     public void setMonth(int month) {
@@ -69,6 +70,7 @@ public class Cita
 
     /**
      * Devuelve el año en la fecha de la cita
+     *
      * @return int - Año de la fecha de la cita indicada
      */
     public int getYear() {
@@ -77,6 +79,7 @@ public class Cita
 
     /**
      * Asigna un año a la fecha de la cita
+     *
      * @param year - Año a asignar en la fecha
      */
     public void setYear(int year) {
@@ -85,29 +88,47 @@ public class Cita
 
     /**
      * Devuelve el paciente asignado de la cita
+     *
      * @return Paciente - Paciente asignada a la cita
      */
-    public Paciente getPacienteAsignado() { return pacienteAsignado; }
+    public Paciente getPacienteAsignado() {
+        return pacienteAsignado;
+    }
 
     /**
      * Asigna un paciente a la cita indicada
+     *
      * @param pacienteAsignado - Paciente a asignar a la cita
      */
-    public void setPacienteAsignado(Paciente pacienteAsignado) { this.pacienteAsignado = pacienteAsignado; }
+    public void setPacienteAsignado(Paciente pacienteAsignado) {
+        this.pacienteAsignado = pacienteAsignado;
+    }
 
-    public int getHora() { return hora; }
+    public int getHora() {
+        return hora;
+    }
 
-    public void setHora(int h) { hora = h; }
+    public void setHora(int h) {
+        hora = h;
+    }
 
-    public int getMinuto() { return minuto; }
+    public int getMinuto() {
+        return minuto;
+    }
 
-    public void setMinuto(int min) { minuto = min; }
+    public void setMinuto(int min) {
+        minuto = min;
+    }
 
-    public String toString()
-    {
-        if(minuto==30)
+    public String toString() {
+        if (minuto == 30)
             return pacienteAsignado.darNombre() + " - " + hora + ":" + minuto;  //day + "/" + month + "/" + year;
         else
             return pacienteAsignado.darNombre() + " - " + hora + ":00";
+    }
+
+    @Override
+    public int compareTo(Cita o) {
+        return Integer.compare(getHora(), o.getHora());
     }
 }

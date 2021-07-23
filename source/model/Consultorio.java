@@ -231,21 +231,11 @@ public class Consultorio
 
     public void ordenarCitasDelDiaPorHora(ArrayList<Cita> citasDia)
     {
-        Cita[] ordenadas = new Cita[citasDia.size()];
-
         System.out.println("El total de citas es: " + citasDia.size());
-        for(int i = 0; i<citasDia.size(); i++)
-        {
-            for(int j = i+1; j<citasDia.size(); j++)
-            {
-                System.out.println(citasDia.get(i).getHora() + " es igual a " + citasDia.get(j).getHora() + "?");
-                if(Integer.compare(citasDia.get(i).getHora(), citasDia.get(j).getHora()) == 0) {
-                    System.out.println("OK");
-                } else
-                    System.out.println("NOT OK");
-            }
-        }
-        System.out.println(ordenadas);
+
+        Collections.sort(citasDia);
+
+        System.out.println("Éxito ordenando las citas del día");
 
     }
 }
