@@ -37,6 +37,8 @@ public class Main
      */
     private static VentanaPrincipal ventanaPrincipal;
 
+    private static VentanaAgregarCita ventanaAgregarCita;
+
     private static Connection conexionDB;
 
     /**
@@ -56,6 +58,7 @@ public class Main
         inicializarCalendario();
 
         inicializarModelo();
+        colorearDias();
 
         int day = ventanaPrincipal.darPanelCalendario().darCalendario().getDayChooser().getDay();
         int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
@@ -125,9 +128,9 @@ public class Main
             System.out.println("Las citas del consultorio son:");
             while(rsCitas.next())
             {
-                System.out.println(rsCitas.getInt(1) + " " + rsCitas.getInt(2) + " " + rsCitas.getInt(3));
+                System.out.println(rsCitas.getInt(2) + " " + rsCitas.getInt(3) + " " + rsCitas.getInt(4));
 
-                Cita nuevaCita = new Cita(rsCitas.getInt(1), rsCitas.getInt(2), rsCitas.getInt(3), modelo.buscarPacientePorNombre(rsCitas.getString(6)), rsCitas.getInt(4), rsCitas.getInt(5));
+                Cita nuevaCita = new Cita(rsCitas.getInt(2), rsCitas.getInt(3), rsCitas.getInt(4), modelo.buscarPacientePorNombre(rsCitas.getString(7)), rsCitas.getInt(5), rsCitas.getInt(6));
                 modelo.agregarCita(nuevaCita);
             }
 
@@ -162,12 +165,6 @@ public class Main
         int d = fecha.getDate();
         int m = fecha.getMonth()+1;
         int y = Calendar.getInstance().get(Calendar.YEAR);
-
-        JPanel jpanel = ventanaPrincipal.darPanelCalendario().darCalendario().getDayChooser().getDayPanel();
-        Component components[] = jpanel.getComponents();
-
-        if(d==22 && m==7 && y==2021)
-            components[d+ventanaPrincipal.darPanelCalendario().darCalendario().getCalendar().get(Calendar.DAY_OF_WEEK)+5].setBackground(Color.blue);
 
         ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(d,m,y));
         ventanaPrincipal.darPanelTabs().darPanelListaPacientes().cambiarListaPacientes(modelo.darPacientes());
@@ -218,23 +215,30 @@ public class Main
      */
     private static void inicializarVentanaAgregarCita()
     {
-        VentanaAgregarCita ventanaAgregarCita = ventanaPrincipal.darVentanaAgregarCita();
+        ventanaAgregarCita = ventanaPrincipal.darVentanaAgregarCita();
         ArrayList<Paciente> pacientes = modelo.darPacientes();
-        for(int i=0;i<pacientes.size();i++)
+        if(ventanaAgregarCita.getComboPacientes().getSelectedItem() == null)
         {
-            ventanaAgregarCita.getComboPacientes().addItem(pacientes.get(i));
-        }
-
-        for(int i=7;i<=20;i++)
-        {
-            for(int j=0;j<=30;j+=30)
+            for(int i=0;i<pacientes.size();i++)
             {
-                if(j==0)
-                    ventanaAgregarCita.getComboHora().addItem(i + ":" + j + "0");
-                else
-                    ventanaAgregarCita.getComboHora().addItem(i + ":" + j);
+                ventanaAgregarCita.getComboPacientes().addItem(pacientes.get(i));
             }
         }
+
+        if(ventanaAgregarCita.getComboHora().getSelectedItem() == null)
+        {
+            for(int i=7;i<=20;i++)
+            {
+                for(int j=0;j<=30;j+=30)
+                {
+                    if(j==0)
+                        ventanaAgregarCita.getComboHora().addItem(i + ":" + j + "0");
+                    else
+                        ventanaAgregarCita.getComboHora().addItem(i + ":" + j);
+                }
+            }
+        }
+
 
         ventanaAgregarCita.setVisible(true);
     }
@@ -341,7 +345,6 @@ public class Main
                     Statement stmt = con.createStatement();
                     String query = "INSERT INTO `citas`(`day`, `month`, `year`, `hour`, `min`, `paciente`) VALUES (" + dia + ", " + mes + ", " + ano + ", " + date[0] + ", " + date[1] + ", '" + pacienteAAsignar.darNombre() + "');";
                     stmt.execute(query);
-
                     con.close();
 
                     JOptionPane.showMessageDialog(null,"Cita agregada exitosamente!","Proceso exitoso", JOptionPane.INFORMATION_MESSAGE);
@@ -455,7 +458,27 @@ public class Main
                 int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
                 ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.buscarCitasPorFecha(day, month, year));
+                colorearDias();
             }
         });
+    }
+
+    private static void colorearDias()
+    {
+        /*JPanel jpanel = ventanaPrincipal.darPanelCalendario().darCalendario().getDayChooser().getDayPanel();
+        Component components[] = jpanel.getComponents();
+
+        for(int i = 0; i<modelo.darCitas().size();i++)
+        {
+            int dia = ((Cita)modelo.darCitas().get(i)).getDay();
+            if(Integer.hashCode(dia) !=null)
+            {
+
+            }
+
+            components[dia+ventanaPrincipal.darPanelCalendario().darCalendario().getCalendar().get(Calendar.DAY_OF_WEEK)+5].setBackground(Color.pink);
+
+        }
+         */
     }
 }
