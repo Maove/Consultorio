@@ -381,10 +381,10 @@ public class Main
             public void mouseClicked(MouseEvent e) {
                 Paciente pacienteSeleccionado = (Paciente) ventanaPrincipal.darPanelTabs().darPanelListaPacientes().darListaPacientes().getSelectedValue();
                 System.out.println(pacienteSeleccionado);
-                /*ventanaPrincipal.darPanelDatos().darTxtNombre().setText(pacienteSeleccionado.getPacienteAsignado().darNombre());
-                ventanaPrincipal.darPanelDatos().darTxtCedula().setText(citaSeleccionada.getPacienteAsignado().darCedula());
-                ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
-                ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora() + ":" + citaSeleccionada.getMinuto());*/
+                ventanaPrincipal.darPanelDatos().darTxtNombre().setText(pacienteSeleccionado.darNombre());
+                ventanaPrincipal.darPanelDatos().darTxtCedula().setText(pacienteSeleccionado.darCedula());
+                //ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
+                //ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora() + ":" + citaSeleccionada.getMinuto());
             }
 
             @Override
