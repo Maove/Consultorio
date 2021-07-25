@@ -65,6 +65,9 @@ public class Main
         int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
         JOptionPane.showMessageDialog(null, "Para hoy se tienen: " + modelo.buscarCitasPorFecha(day, month, year).size() + " citas programadas","Citas de hoy", JOptionPane.INFORMATION_MESSAGE);
+
+        ventanaPrincipal.darPanelMetricas().darLabCitasSemana().setText(""+modelo.darCitas().size());
+        ventanaPrincipal.darPanelMetricas().darLabCitasMes().setText(""+modelo.darCitas().size());
     }
 
     /**
@@ -422,6 +425,11 @@ public class Main
                 ventanaPrincipal.darPanelDatos().darTxtCedula().setText(citaSeleccionada.getPacienteAsignado().darCedula());
                 ventanaPrincipal.darPanelDatos().darTxtFecha().setText(citaSeleccionada.getDay() + "/" + citaSeleccionada.getMonth() + "/" + citaSeleccionada.getYear());
                 ventanaPrincipal.darPanelDatos().darTxtHora().setText("" + citaSeleccionada.getHora() + ":" + citaSeleccionada.getMinuto());
+
+                if(e.getClickCount() == 2)
+                {
+                    JOptionPane.showMessageDialog(null,"Hola","Hi",JOptionPane.INFORMATION_MESSAGE);
+                }
             }
 
             @Override

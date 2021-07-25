@@ -21,6 +21,8 @@ public class VentanaPrincipal extends JFrame
 
     private PanelTabs panelTabs;
 
+    private PanelMetricas panelMetricas;
+
     public VentanaPrincipal()
     {
         setTitle("Andrea Ramírez Odontología");
@@ -35,10 +37,8 @@ public class VentanaPrincipal extends JFrame
         add(panelDatos, BorderLayout.NORTH);
 
         panelListaPacientes = new PanelListaPacientes();
-        //add(panelListaPacientes, BorderLayout.EAST);
 
         panelListaCitas = new PanelListaCitas();
-        //add(panelListaCitas, BorderLayout.EAST);
 
         panelTabs = new PanelTabs();
         add(panelTabs, BorderLayout.EAST);
@@ -48,6 +48,9 @@ public class VentanaPrincipal extends JFrame
 
         panelCalendario = new PanelCalendario();
         add(panelCalendario, BorderLayout.CENTER);
+
+        panelMetricas = new PanelMetricas();
+        add(panelMetricas, BorderLayout.SOUTH);
 
         ventanaAgregarPaciente = new VentanaAgregarPaciente();
 
@@ -65,6 +68,8 @@ public class VentanaPrincipal extends JFrame
     public PanelCalendario darPanelCalendario() { return panelCalendario; }
 
     public PanelTabs darPanelTabs() { return panelTabs; }
+
+    public PanelMetricas darPanelMetricas() { return panelMetricas; }
 
     public VentanaAgregarPaciente darVentanaAgregarPaciente() { return ventanaAgregarPaciente; }
 
