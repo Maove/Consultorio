@@ -63,8 +63,6 @@ public class Main
         int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
         int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
-        //Dos citas agregadas para el día de hoy
-
         JOptionPane.showMessageDialog(null, "Para hoy se tienen: " + modelo.buscarCitasPorFecha(day, month, year).size() + " citas programadas","Citas de hoy", JOptionPane.INFORMATION_MESSAGE);
 
         ventanaPrincipal.darPanelMetricas().darLabCitasSemana().setText(""+modelo.darCitas().size());
