@@ -59,7 +59,7 @@ public class Main
         inicializarModelo();
         colorearDias();
 
-        //Comentario
+
 
         int day = ventanaPrincipal.darPanelCalendario().darCalendario().getDayChooser().getDay();
         int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
