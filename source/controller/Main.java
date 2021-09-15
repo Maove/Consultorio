@@ -36,8 +36,14 @@ public class Main
      */
     private static VentanaPrincipal ventanaPrincipal;
 
+    /**
+     * Relation with view VentanaAgregarCita
+     */
     private static VentanaAgregarCita ventanaAgregarCita;
 
+    /**
+     * Connection to MySQL database
+     */
     private static Connection conexionDB;
 
     /**
