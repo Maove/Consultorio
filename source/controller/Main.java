@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -71,10 +72,12 @@ public class Main
         int month = ventanaPrincipal.darPanelCalendario().darCalendario().getMonthChooser().getMonth()+1;
         int year = ventanaPrincipal.darPanelCalendario().darCalendario().getYearChooser().getYear();
 
-        JOptionPane.showMessageDialog(null, "Para hoy se tienen: " + modelo.buscarCitasPorFecha(day, month, year).size() + " citas programadas","Citas de hoy", JOptionPane.INFORMATION_MESSAGE);
+        //System.out.println(ventanaPrincipal.darPanelCalendario().darCalendario());
 
-        ventanaPrincipal.darPanelMetricas().darLabCitasSemana().setText(""+modelo.darCitas().size());
+        ventanaPrincipal.darPanelMetricas().darLabCitasSemana().setText(""+modelo.buscarCitasPorSemana(day).size());
         ventanaPrincipal.darPanelMetricas().darLabCitasMes().setText(""+modelo.darCitas().size());
+
+        JOptionPane.showMessageDialog(null, "Para hoy se tienen: " + modelo.buscarCitasPorFecha(day, month, year).size() + " citas programadas","Citas de hoy", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -94,14 +97,13 @@ public class Main
             Statement stmtPacientes = conexionDB.createStatement();
             ResultSet rsPacientes = stmtPacientes.executeQuery("SELECT * FROM pacientes");
 
-            System.out.println("Los pacientes del consultorio son:");
             while(rsPacientes.next())
             {
-                System.out.println(rsPacientes.getString(1) + " " + rsPacientes.getString(2));
-
                 Paciente nuevoPaciente = new Paciente(rsPacientes.getString(1), rsPacientes.getString(2));
                 modelo.agregarPaciente(nuevoPaciente);
             }
+
+            System.out.println("Los pacientes del consultorio han sido cargados correctamente");
 
 
 
@@ -135,14 +137,14 @@ public class Main
             Statement stmtCitas = conexionDB.createStatement();
             ResultSet rsCitas = stmtCitas.executeQuery("SELECT * FROM citas");
 
-            System.out.println("Las citas del consultorio son:");
+
             while(rsCitas.next())
             {
-                System.out.println(rsCitas.getInt(2) + " " + rsCitas.getInt(3) + " " + rsCitas.getInt(4));
-
                 Cita nuevaCita = new Cita(rsCitas.getInt(2), rsCitas.getInt(3), rsCitas.getInt(4), modelo.buscarPacientePorNombre(rsCitas.getString(7)), rsCitas.getInt(5), rsCitas.getInt(6));
                 modelo.agregarCita(nuevaCita);
             }
+
+            System.out.println("Las citas del consultorio cargadas correctamente");
 
             conexionDB.close();
 
@@ -476,7 +478,7 @@ public class Main
 
                 ventanaPrincipal.darPanelTabs().darPanelListaCitas().cambiarListaCitas(modelo.ordenarCitasDelDiaPorHora(modelo.buscarCitasPorFecha(day,month,year)));
 
-                colorearDias();
+                // colorearDias();
             }
         });
     }

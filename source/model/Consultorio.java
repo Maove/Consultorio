@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 public class Consultorio
@@ -169,11 +168,11 @@ public class Consultorio
      */
     public ArrayList<Cita> buscarCitasPorFecha(int d, int m, int y)
     {
-       ArrayList<Cita> listaCitasFecha = new ArrayList<Cita>();
+       ArrayList<Cita> listaCitasFecha = new ArrayList<>();
 
        for(int i = 0; i < citas.size(); i++)
        {
-           Cita citaActual = (Cita) citas.get(i);
+           Cita citaActual = citas.get(i);
 
            int day = citaActual.getDay();
            int month = citaActual.getMonth();
@@ -186,6 +185,29 @@ public class Consultorio
        }
 
        return listaCitasFecha;
+    }
+
+    public ArrayList<Cita> buscarCitasPorSemana(int d)
+    {
+        ArrayList<Cita> listaCitasSemana = new ArrayList<>();
+
+        for(int i = 0; i<citas.size(); i++)
+        {
+            Cita citaActual = citas.get(i);
+
+            if(citaActual.getDay() == d)
+                listaCitasSemana.add(citaActual);
+        }
+
+
+        return listaCitasSemana;
+    }
+
+    public ArrayList<Cita> buscarCitasPorMes(int m)
+    {
+        ArrayList<Cita> listaCitasMes = null;
+
+        return listaCitasMes;
     }
 
     /**
@@ -231,21 +253,7 @@ public class Consultorio
 
     public ArrayList<Cita> ordenarCitasDelDiaPorHora(ArrayList<Cita> citasDia)
     {
-        System.out.println("El total de citas es: " + citasDia.size());
-
-        for(int i = 0; i<citasDia.size(); i++)
-        {
-            System.out.println(citasDia.get(i).getHora());
-        }
-
         Collections.sort(citasDia);
-
-        for(int i = 0; i<citasDia.size(); i++)
-        {
-            System.out.println(citasDia.get(i).getHora());
-        }
-
-        System.out.println("Éxito ordenando las citas del día");
 
         return citasDia;
     }
