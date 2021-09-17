@@ -210,7 +210,15 @@ public class Consultorio
 
     public ArrayList<Cita> buscarCitasPorMes(int m)
     {
-        ArrayList<Cita> listaCitasMes = null;
+        ArrayList<Cita> listaCitasMes = new ArrayList<>();
+
+        for(int i = 0; i<citas.size(); i++)
+        {
+            Cita citaActual = citas.get(i);
+
+            if(citaActual.getMonth() == m && citaActual.getYear() == 2021)
+                listaCitasMes.add(citaActual);
+        }
 
         return listaCitasMes;
     }

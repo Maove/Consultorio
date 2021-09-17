@@ -75,7 +75,7 @@ public class Main
         //System.out.println(ventanaPrincipal.darPanelCalendario().darCalendario());
 
         ventanaPrincipal.darPanelMetricas().darLabCitasSemana().setText(""+modelo.buscarCitasPorSemana(day).size());
-        ventanaPrincipal.darPanelMetricas().darLabCitasMes().setText(""+modelo.darCitas().size());
+        ventanaPrincipal.darPanelMetricas().darLabCitasMes().setText(""+modelo.buscarCitasPorMes(month).size());
 
         JOptionPane.showMessageDialog(null, "Para hoy se tienen: " + modelo.buscarCitasPorFecha(day, month, year).size() + " citas programadas","Citas de hoy", JOptionPane.INFORMATION_MESSAGE);
     }
