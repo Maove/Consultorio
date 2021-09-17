@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 
 public class Consultorio
@@ -195,6 +196,10 @@ public class Consultorio
         {
             Cita citaActual = citas.get(i);
 
+            Date fechaActual = new Date(citaActual.getDay(), citaActual.getMonth(), citaActual.getYear());
+            System.out.println(fechaActual);
+
+            //TODO
             if(citaActual.getDay() == d)
                 listaCitasSemana.add(citaActual);
         }
