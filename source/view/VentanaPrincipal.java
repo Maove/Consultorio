@@ -33,10 +33,12 @@ public class VentanaPrincipal extends JFrame
 
         setLayout(new BorderLayout());
 
-
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(new JMenu("Archivo"));
+        add(menuBar, BorderLayout.NORTH);
 
         panelDatos = new PanelDatos();
-        add(panelDatos, BorderLayout.NORTH);
+        //add(panelDatos, BorderLayout.NORTH);
 
         panelListaPacientes = new PanelListaPacientes();
 

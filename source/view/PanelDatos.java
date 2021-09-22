@@ -50,7 +50,7 @@ public class PanelDatos extends JPanel
         panelAux.add(labHora);
         panelAux.add(txtHora);
 
-        add(panelAux, BorderLayout.CENTER);
+        //add(panelAux, BorderLayout.CENTER);
     }
 
     public JLabel darLabNombre()
