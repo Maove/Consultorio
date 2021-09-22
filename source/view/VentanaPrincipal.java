@@ -33,6 +33,8 @@ public class VentanaPrincipal extends JFrame
 
         setLayout(new BorderLayout());
 
+
+
         panelDatos = new PanelDatos();
         add(panelDatos, BorderLayout.NORTH);
 

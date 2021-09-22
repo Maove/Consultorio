@@ -13,7 +13,11 @@ public class PanelDatos extends JPanel
     public PanelDatos()
     {
         setBorder(new TitledBorder("Datos del Paciente"));
-        setLayout(new GridLayout(4,2));
+        setLayout(new BorderLayout());
+
+        JMenuBar menuBar = new JMenuBar();
+        menuBar.add(new JMenu("Archivo"));
+        add(menuBar, BorderLayout.NORTH);
 
         labNombre = new JLabel("Nombre: ");
         labCedula = new JLabel("Cédula: ");
@@ -32,17 +36,21 @@ public class PanelDatos extends JPanel
         txtHora = new JTextField();
         txtHora.setEditable(false);
 
-        add(labNombre);
-        add(txtNombre);
+        JPanel panelAux = new JPanel();
 
-        add(labCedula);
-        add(txtCedula);
+        panelAux.add(labNombre);
+        panelAux.add(txtNombre);
 
-        add(labFecha);
-        add(txtFecha);
+        panelAux.add(labCedula);
+        panelAux.add(txtCedula);
 
-        add(labHora);
-        add(txtHora);
+        panelAux.add(labFecha);
+        panelAux.add(txtFecha);
+
+        panelAux.add(labHora);
+        panelAux.add(txtHora);
+
+        add(panelAux, BorderLayout.CENTER);
     }
 
     public JLabel darLabNombre()
