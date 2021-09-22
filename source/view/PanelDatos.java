@@ -15,10 +15,6 @@ public class PanelDatos extends JPanel
         setBorder(new TitledBorder("Datos del Paciente"));
         setLayout(new BorderLayout());
 
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.add(new JMenu("Archivo"));
-        add(menuBar, BorderLayout.NORTH);
-
         labNombre = new JLabel("Nombre: ");
         labCedula = new JLabel("Cédula: ");
         labFecha = new JLabel("Fecha: ");
