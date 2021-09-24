@@ -15,7 +15,7 @@ public class PanelDatos extends JPanel
         setBorder(new TitledBorder("Datos del Paciente"));
         setLayout(new BorderLayout());
 
-        //Comentario Clase PanelDatos para continuar
+        //Comentario Clase PanelDatos para continuar - Actualizado 23/09/2021
         labNombre = new JLabel("Nombre: ");
         labCedula = new JLabel("Cédula: ");
         labFecha = new JLabel("Fecha: ");
