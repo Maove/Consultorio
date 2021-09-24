@@ -16,6 +16,7 @@ public class PanelDatos extends JPanel
         setLayout(new BorderLayout());
 
         //Comentario Clase PanelDatos para continuar - Actualizado 23/09/2021
+        // Revisar posición en la que quedará el menú configurado
         labNombre = new JLabel("Nombre: ");
         labCedula = new JLabel("Cédula: ");
         labFecha = new JLabel("Fecha: ");
